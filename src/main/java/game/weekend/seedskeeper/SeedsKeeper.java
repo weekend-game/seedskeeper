@@ -6,7 +6,7 @@ import java.awt.Toolkit;
 import game.weekend.seedskeeper.general.Journal;
 import game.weekend.seedskeeper.general.Loc;
 import game.weekend.seedskeeper.general.Proper;
-import game.weekend.seedskeeper.journals.seeds.SeedsJournal;
+import game.weekend.seedskeeper.journals.brands.BrandJournal;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Tab;
@@ -17,9 +17,9 @@ public class SeedsKeeper extends Application {
 
 	public static final String APP_NAME = "SeedsKeeper";
 
-	public static final String APP_VERSION = "00.01";
+	public static final String APP_VERSION = "00.02";
 
-	public final static String APP_DATE = "02.05.2026";
+	public final static String APP_DATE = "03.05.2026";
 
 	public static final String APP_COPYRIGHT = "(c) Weekend Game, 2026";
 
@@ -63,7 +63,16 @@ public class SeedsKeeper extends Application {
 	}
 
 	private Scene getScene() {
-		tabPane.getTabs().add(new SeedTab(new SeedsJournal(), Loc.get("seeds")));
+		tabPane.getTabs().add(new SeedTab(new BrandJournal(), Loc.get("brands")));
+
+		tabPane.setOnKeyPressed(ke -> {
+			String key = ke.getCode().toString();
+			if (key.equalsIgnoreCase("ENTER"))
+				for (Tab t : tabPane.getTabs())
+					if (t.isSelected())
+						((SeedTab) t).journal.enter();
+		});
+
 		return new Scene(tabPane);
 	}
 

@@ -13,6 +13,9 @@ module SeedsKeeper {
 	opens game.weekend.seedskeeper to javafx.graphics, javafx.fxml;
 
 	exports game.weekend.seedskeeper;
+	exports game.weekend.seedskeeper.controls;
+	exports game.weekend.seedskeeper.data.db;
+	exports game.weekend.seedskeeper.data.types;
 	exports game.weekend.seedskeeper.general;
-	exports game.weekend.seedskeeper.journals.seeds;
+	exports game.weekend.seedskeeper.journals.brands;
 }
