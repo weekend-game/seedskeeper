@@ -3,10 +3,11 @@ package game.weekend.seedskeeper;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 
+import game.weekend.seedskeeper.dictionaries.brands.BrandDictionary;
+import game.weekend.seedskeeper.dictionaries.other.OtherDictionaries;
 import game.weekend.seedskeeper.general.Journal;
 import game.weekend.seedskeeper.general.Loc;
 import game.weekend.seedskeeper.general.Proper;
-import game.weekend.seedskeeper.journals.brands.BrandJournal;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Tab;
@@ -17,9 +18,9 @@ public class SeedsKeeper extends Application {
 
 	public static final String APP_NAME = "SeedsKeeper";
 
-	public static final String APP_VERSION = "00.02";
+	public static final String APP_VERSION = "00.03";
 
-	public final static String APP_DATE = "03.05.2026";
+	public final static String APP_DATE = "09.05.2026";
 
 	public static final String APP_COPYRIGHT = "(c) Weekend Game, 2026";
 
@@ -63,7 +64,8 @@ public class SeedsKeeper extends Application {
 	}
 
 	private Scene getScene() {
-		tabPane.getTabs().add(new SeedTab(new BrandJournal(), Loc.get("brands")));
+		tabPane.getTabs().add(new SeedTab(new BrandDictionary(), Loc.get("brands")));
+		tabPane.getTabs().add(new SeedTab(new OtherDictionaries(), Loc.get("other_dictionaries")));
 
 		tabPane.setOnKeyPressed(ke -> {
 			String key = ke.getCode().toString();

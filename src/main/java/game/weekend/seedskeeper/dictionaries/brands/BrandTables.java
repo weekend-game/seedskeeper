@@ -1,4 +1,4 @@
-package game.weekend.seedskeeper.journals.brands;
+package game.weekend.seedskeeper.dictionaries.brands;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

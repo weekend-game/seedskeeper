@@ -1,4 +1,4 @@
-package game.weekend.seedskeeper.journals.brands;
+package game.weekend.seedskeeper.dictionaries.brands;
 
 import game.weekend.seedskeeper.controls.StatusBar;
 import game.weekend.seedskeeper.controls.XTextField;
@@ -16,7 +16,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
-public class BrandJournal extends Journal<BrandData> {
+public class BrandDictionary extends Journal<BrandData> {
 
 	private final XTextField txtCode = new XTextField(this);
 	private final XTextField txtName = new XTextField(this);

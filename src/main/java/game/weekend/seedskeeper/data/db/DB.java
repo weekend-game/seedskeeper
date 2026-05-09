@@ -4,7 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-import game.weekend.seedskeeper.journals.brands.BrandTables;
+import game.weekend.seedskeeper.dictionaries.brands.BrandTables;
+import game.weekend.seedskeeper.dictionaries.other.QualityTables;
 
 public class DB {
 
@@ -18,6 +19,7 @@ public class DB {
 	private final Connection connection;
 
 	public final BrandTables brand;
+	public final QualityTables quality;
 
 	public static DB getInstance() {
 		if (instance == null) {
@@ -36,6 +38,7 @@ public class DB {
 		connection = c;
 
 		brand = new BrandTables();
+		quality = new QualityTables();
 	}
 
 	public Connection getConnection() {

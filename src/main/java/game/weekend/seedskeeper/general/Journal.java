@@ -11,6 +11,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -23,6 +24,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+import javafx.util.converter.IntegerStringConverter;
 
 public abstract class Journal<T> {
 
@@ -128,6 +130,15 @@ public abstract class Journal<T> {
 		return column;
 	}
 
+	public TableColumn<T, Integer> getIntColumn(String title, String field, int width) {
+		TableColumn<T, Integer> column = new TableColumn<>(title);
+		column.setCellValueFactory(new PropertyValueFactory<>(field));
+		column.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+		column.setEditable(false);
+		column.setPrefWidth(width);
+		return column;
+	}
+
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public TableColumn<T, String> getLinkColumn(String title, String field, int width) {
 		TableColumn<T, String> column = new TableColumn<>(title);
@@ -148,6 +159,21 @@ public abstract class Journal<T> {
 		hb.setPadding(new Insets(3, 0, 3, 0));
 		hb.setAlignment(Pos.CENTER_LEFT);
 		hb.getChildren().addAll(lblName, txtField);
+
+		return hb;
+	}
+
+	protected HBox getColorBox(ColorPicker colorPicker) {
+		Label lblName = new Label(Loc.get("color") + ":");
+		lblName.setMinWidth(35);
+
+		colorPicker.getStyleClass().add("button");
+
+		HBox hb = new HBox();
+		hb.setSpacing(5);
+		hb.setPadding(new Insets(3, 0, 3, 0));
+		hb.setAlignment(Pos.CENTER_LEFT);
+		hb.getChildren().addAll(lblName, colorPicker);
 
 		return hb;
 	}
@@ -185,6 +211,20 @@ public abstract class Journal<T> {
 	protected Button getButtonCancel() {
 		Button btn = new Button(Loc.get("cancel"));
 		btn.setOnAction(e -> doCancel(true));
+		return btn;
+	}
+
+	protected Button getButtonShiftUp() {
+		Button btn = new Button(Loc.get("up"));
+		btn.setOnAction((e) -> doShiftUp());
+		btn.setPrefWidth(90);
+		return btn;
+	}
+
+	protected Button getButtonShiftDown() {
+		Button btn = new Button(Loc.get("down"));
+		btn.setOnAction((e) -> doShiftDown());
+		btn.setPrefWidth(90);
 		return btn;
 	}
 
@@ -313,5 +353,11 @@ public abstract class Journal<T> {
 		doDisplay(getCurrentRecord());
 		if (getTableView() != null)
 			getTableView().requestFocus();
+	}
+
+	protected void doShiftUp() {
+	}
+
+	protected void doShiftDown() {
 	}
 }

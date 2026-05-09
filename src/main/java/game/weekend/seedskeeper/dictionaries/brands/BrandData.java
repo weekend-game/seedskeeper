@@ -1,4 +1,4 @@
-package game.weekend.seedskeeper.journals.brands;
+package game.weekend.seedskeeper.dictionaries.brands;
 
 import game.weekend.seedskeeper.data.types.Error;
 import game.weekend.seedskeeper.data.types.Record;
