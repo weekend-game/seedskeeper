@@ -61,31 +61,6 @@ public class QualityTables extends TablesOf {
 		return list;
 	}
 
-	public QualityData get(int id) {
-		QualityData quality = new QualityData();
-
-		Connection c = getConnection();
-		if (c == null || id == 0)
-			return quality;
-
-		try {
-			if (getQuality == null)
-				getQuality = getConnection()
-						.prepareStatement("SELECT id, numb, code, color FROM Qualities WHERE id = ?");
-
-			getQuality.setInt(1, id);
-			ResultSet rs = getQuality.executeQuery();
-
-			if (rs.next())
-				quality = new QualityData(rs.getInt(1), rs.getInt(2), rs.getString(3), rs.getString(4));
-			rs.close();
-		} catch (SQLException e) {
-			System.out.println("QualityTables.get(int id) - " + e);
-		}
-
-		return quality;
-	}
-
 	public void add(QualityData quality) {
 		Connection c = getConnection();
 		if (c == null)
@@ -219,11 +194,12 @@ public class QualityTables extends TablesOf {
 
 	private static PreparedStatement getListForTable = null;
 	private static PreparedStatement getListForCombo = null;
-	private static PreparedStatement getQuality = null;
+
 	private static PreparedStatement addQuality = null;
-	private static PreparedStatement renumberDown = null;
 	private static PreparedStatement setQuality = null;
 	private static PreparedStatement removeQuality = null;
+
 	private static PreparedStatement renumberUp = null;
+	private static PreparedStatement renumberDown = null;
 	private static PreparedStatement setNumber = null;
 }
