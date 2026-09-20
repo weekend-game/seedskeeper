@@ -18,4 +18,5 @@ module SeedsKeeper {
 	exports game.weekend.seedskeeper.data.types;
 	exports game.weekend.seedskeeper.general;
 	exports game.weekend.seedskeeper.dictionaries.brands;
+	exports game.weekend.seedskeeper.dictionaries.other;
 }
