@@ -47,7 +47,7 @@ public class QualityTables extends TablesOf {
 			if (getListForCombo == null)
 				getListForCombo = getConnection().prepareStatement("SELECT id, code FROM Qualities");
 
-			list.add(new ComboItem(0, "")); // Это соответсвует отсутствию указания качества в UI
+			list.add(new ComboItem(0, ""));
 
 			ResultSet rs = getListForCombo.executeQuery();
 

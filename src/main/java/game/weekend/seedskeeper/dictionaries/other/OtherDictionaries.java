@@ -10,12 +10,24 @@ import javafx.scene.layout.VBox;
 
 public class OtherDictionaries extends Journal<Object> implements IReadOnly {
 
+	ColorDictionary colorDictionary = new ColorDictionary(this);
+	KindDictionary kindDictionary = new KindDictionary(this);
 	QualityDictionary qualityDictionary = new QualityDictionary(this);
 
 	private final Button btnOk = getButtonOk();
 	private final Button btnCancel = getButtonCancel();
 
 	public OtherDictionaries() {
+		colorDictionary.addReadOnlyObject(this);
+		colorDictionary.addReadOnlyObject(kindDictionary);
+		colorDictionary.addReadOnlyObject(qualityDictionary);
+
+		kindDictionary.addReadOnlyObject(colorDictionary);
+		kindDictionary.addReadOnlyObject(this);
+		kindDictionary.addReadOnlyObject(qualityDictionary);
+
+		qualityDictionary.addReadOnlyObject(colorDictionary);
+		qualityDictionary.addReadOnlyObject(kindDictionary);
 		qualityDictionary.addReadOnlyObject(this);
 	}
 
@@ -24,9 +36,12 @@ public class OtherDictionaries extends Journal<Object> implements IReadOnly {
 		VBox vb = super.getPane();
 
 		HBox hb1 = new HBox();
-		hb1.getChildren().addAll(qualityDictionary.getPane());
+		hb1.getChildren().addAll(colorDictionary.getPane(), kindDictionary.getPane());
 
-		vb.getChildren().addAll(hb1, getVSpacer(), makeSaveButtons());
+		HBox hb2 = new HBox();
+		hb2.getChildren().addAll(qualityDictionary.getPane());
+
+		vb.getChildren().addAll(hb1, hb2, getVSpacer(), makeSaveButtons());
 		return vb;
 	}
 
@@ -55,6 +70,8 @@ public class OtherDictionaries extends Journal<Object> implements IReadOnly {
 	public void activate() {
 		btnCancel.setCancelButton(true);
 
+		colorDictionary.activate();
+		kindDictionary.activate();
 		qualityDictionary.activate();
 
 		if (getCurrentNode() != null)
@@ -68,18 +85,30 @@ public class OtherDictionaries extends Journal<Object> implements IReadOnly {
 
 	@Override
 	public void enter() {
+		if (colorDictionary.isEditMode())
+			colorDictionary.enter();
+		if (kindDictionary.isEditMode())
+			kindDictionary.enter();
 		if (qualityDictionary.isEditMode())
 			qualityDictionary.enter();
 	}
 
 	@Override
 	public void doOk() {
+		if (colorDictionary.isEditMode())
+			colorDictionary.doOk();
+		if (kindDictionary.isEditMode())
+			kindDictionary.doOk();
 		if (qualityDictionary.isEditMode())
 			qualityDictionary.doOk();
 	}
 
 	@Override
 	public void doCancel(boolean checkChange) {
+		if (colorDictionary.isEditMode())
+			colorDictionary.doCancel(checkChange);
+		if (kindDictionary.isEditMode())
+			kindDictionary.doCancel(checkChange);
 		if (qualityDictionary.isEditMode())
 			qualityDictionary.doCancel(checkChange);
 	}

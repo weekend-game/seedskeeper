@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 import game.weekend.seedskeeper.dictionaries.brands.BrandTables;
+import game.weekend.seedskeeper.dictionaries.other.ColorTables;
+import game.weekend.seedskeeper.dictionaries.other.KindTables;
 import game.weekend.seedskeeper.dictionaries.other.QualityTables;
 
 public class DB {
@@ -19,6 +21,8 @@ public class DB {
 	private final Connection connection;
 
 	public final BrandTables brand;
+	public final ColorTables color;
+	public final KindTables kind;
 	public final QualityTables quality;
 
 	public static DB getInstance() {
@@ -38,6 +42,8 @@ public class DB {
 		connection = c;
 
 		brand = new BrandTables();
+		color = new ColorTables();
+		kind = new KindTables();
 		quality = new QualityTables();
 	}
 

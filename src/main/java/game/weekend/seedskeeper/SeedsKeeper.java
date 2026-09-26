@@ -18,9 +18,9 @@ public class SeedsKeeper extends Application {
 
 	public static final String APP_NAME = "SeedsKeeper";
 
-	public static final String APP_VERSION = "00.03";
+	public static final String APP_VERSION = "00.04";
 
-	public final static String APP_DATE = "20.09.2026";
+	public final static String APP_DATE = "26.09.2026";
 
 	public static final String APP_COPYRIGHT = "(c) Weekend Game on Github.com, 2026";
 

@@ -47,6 +47,7 @@ public class BrandDictionary extends Journal<BrandData> {
 	}
 
 	private TableView<BrandData> makeTableView() {
+		getTableView().getSelectionModel().setCellSelectionEnabled(true);
 
 		TableColumn<BrandData, String> colCode = getTextColumn(Loc.get("code"), "code", 200);
 		getTableView().getColumns().add(colCode);
